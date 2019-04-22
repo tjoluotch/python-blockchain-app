@@ -1,9 +1,11 @@
+# blockchain is empty
 blockchain = []
 
 
 # Python code style guide: states 2 empty lines between function definitions
 # Done for code reuse-ability purposes, each function has only one job
 def get_last_blockchain_value():
+    """ Returns the Last element of current blockchain"""
     return blockchain[-1]
 
 
@@ -13,7 +15,8 @@ def add_value(transaction_amount, last_transaction=[1]):
 
 
 def get_user_input():
-    return float(input("Your transaction amount please: "))
+    user_input = float(input("Your transaction amount please: "))
+    return user_input
 
 
 tx_amount = get_user_input()
