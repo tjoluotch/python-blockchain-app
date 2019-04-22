@@ -2,31 +2,58 @@
 blockchain = []
 
 
-# Python code style guide: states 2 empty lines between function definitions
-# Done for code reuse-ability purposes, each function has only one job
 def get_last_blockchain_value():
-    """ Returns the Last element of current blockchain"""
+    """ Returns the Last value of current blockchain"""
+    if len(blockchain) < 1:
+        return None
     return blockchain[-1]
 
 
-# defaule arguments in use
-def add_value(transaction_amount, last_transaction=[1]):
+# default arguments in use
+def add_transaction(transaction_amount, last_transaction=[1]):
+    """ Append a new value as well as the last blockchain value to the blockchain
+
+    Arguments:
+        :transaction_amount: the amount that should be added.
+        :last_transaction: the last blockchain transaction (default [1]).
+    """
+    if last_transaction is None:
+        last_transaction = [1]
     blockchain.append([last_transaction, transaction_amount])
 
 
-def get_user_input():
+def get_transaction_value():
     user_input = float(input("Your transaction amount please: "))
     return user_input
 
 
-tx_amount = get_user_input()
-add_value(tx_amount)
+def get_user_choice():
+    user_input = input("Your Choice: ")
+    return user_input
 
-tx_amount = get_user_input()
-# Keyword arguments
-add_value(last_transaction=get_last_blockchain_value(), transaction_amount=tx_amount)
 
-tx_amount = get_user_input()
-add_value(tx_amount, get_last_blockchain_value())
+def print_blockchain_elements():
+    # output the blockchain list to the console
+    for block in blockchain:
+        print("Outputting Block")
+        print(block)
 
-print(blockchain)
+
+while True:
+    print("Please choose")
+    print("1: Add a new transaction value")
+    print("2: Output the blockchain blocks")
+    print("q: Quit")
+    user_choice = get_user_choice()
+    if user_choice == '1':
+        tx_amount = get_transaction_value()
+        add_transaction(tx_amount, get_last_blockchain_value())
+    elif user_choice == '2':
+        print_blockchain_elements()
+    elif user_choice == 'q':
+        break
+    else:
+        print("Input was invalid please pick a value from the list")
+    print("Choice registered!")
+
+print("Done")
