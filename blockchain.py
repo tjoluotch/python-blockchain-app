@@ -1,3 +1,6 @@
+import os
+import psutil
+
 # blockchain is empty
 blockchain = []
 
@@ -83,3 +86,5 @@ while True:
         break
 
 print("Done")
+process = psutil.Process(os.getpid())
+print("Memory:", process.memory_full_info().rss)
